@@ -34,14 +34,15 @@ int main() {
     listaVideos.push_back(new Pelicula("El Rey León", "Aventura", 5, 1994, 88, 2));
     listaVideos.push_back(new Pelicula("La Monja", "Terror", 7, 2018, 96, 3));
     listaVideos.push_back(new Serie("Friends", "Comedia", 5, 1994, 22, 66));
-    listaVideos.push_back(new Serie("Hora de Aventura", "Aventura", 5, 2010, 11, 11));
-    
+    listaVideos.push_back(new Serie("Hora de Aventura", "Aventura", 5, 2010, 11, 10));
+
     int opcion;
     do {
         cout << "\n***** Menú Principal *****" << endl;
         cout << "1. Mostrar todos los videos" << endl;
         cout << "2. Calificar un video" << endl;
-        cout << "3. Salir" << endl;
+        cout << "3. Duplicar calificación de un video" << endl;
+        cout << "4. Salir" << endl;
         cout << "Seleccione una opción: ";
         cin >> opcion;
         if (cin.fail()) {
@@ -59,14 +60,33 @@ int main() {
             case 2:
                 calificarVideo(listaVideos);
                 break;
-            case 3:
+            case 3: {
+                string titulo;
+                cout << "Ingrese el título del video: ";
+                cin.ignore();
+                getline(cin, titulo);
+                bool encontrado = false;
+                for (auto video : listaVideos) {
+                    if (video->getNombreVideo() == titulo) {
+                        *video;  // Aplicando la sobrecarga
+                        cout << "Calificación duplicada.\n";
+                        encontrado = true;
+                        break;
+                    }
+                }
+                if (!encontrado) {
+                    cout << "Video no encontrado.\n";
+                }
+                break;
+            }
+            case 4:
                 cout << "Saliendo del programa..." << endl;
                 break;
             default:
                 cout << "Opción no válida. Intente de nuevo." << endl;
         }
-    } while (opcion != 3);
-    
+    } while (opcion != 4);
+
     for (auto video : listaVideos) {
         delete video;
     }

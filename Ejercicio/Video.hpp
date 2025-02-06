@@ -10,8 +10,9 @@ using namespace std;
 class Video {
 public:
     Video(string nom, string gene, int cali, int ano, int dura);
-    virtual ~Video() {}
-    
+    virtual ~Video() {}  // Mantener solo una declaración del destructor
+
+    // Métodos de acceso y modificación
     void setNombreVideo(string nom);
     string getNombreVideo() const;
     void setGenero(string gen);
@@ -23,9 +24,11 @@ public:
     void setDuracion(int dura);
     int getDuracion() const;
 
-    virtual void muestraDatos() const = 0; // Clase abstracta
-    
-    int operator*() const { return calificacion * 2; }
+    // Método virtual puro
+    virtual void muestraDatos() const = 0;
+
+    // Sobrecarga del operador *
+    void operator*();
 
 protected:
     string nombreVideo;
@@ -35,4 +38,4 @@ protected:
     int duracion;
 };
 
-#endif
+#endif // VIDEO_HPP
