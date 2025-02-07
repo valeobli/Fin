@@ -24,10 +24,10 @@ public:
     void setDuracion(int dura);
     int getDuracion() const;
 
-    // Método virtual puro
+    
     virtual void muestraDatos() const = 0;
 
-    // Sobrecarga del operador *
+    
     void operator*();
 
 protected:
@@ -38,4 +38,4 @@ protected:
     int duracion;
 };
 
-#endif // VIDEO_HPP
+#endif 
